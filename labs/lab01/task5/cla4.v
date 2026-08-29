@@ -66,7 +66,7 @@ module cla4(
   and #(2) (t4_c4, p3, p2, p1, p0, cin);
   or  #(2) (c4, g3, t1_c4, t2_c4, t3_c4, t4_c4);
 
-  assign cout = c4;
+  assign cout = c4; // connect cout to c4
 
   xor #(2) (sum[0], p0, cin);
   xor #(2) (sum[1], p1, c1);
