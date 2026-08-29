@@ -5,13 +5,13 @@
 // from here on, not a special add-on.
 //
 // Part (a): add a CONSTANT delay to every gate below, e.g.:
-//   xor #(2) (ps, a, b);
+//   xor #(3,4) (ps, a, b);
 // Do this for all five gates, then complete ripple_adder.v (this folder)
 // using this full adder, and simulate against tb.v.
 //
 // Part (b): after completing (a), change every gate's delay from a single
 // constant value to a RISE/FALL pair instead, e.g.:
-//   xor #(2,3) (ps, a, b);   // rise delay = 2, fall delay = 3
+//   xor (ps, a, b);   // rise delay = 2, fall delay = 3
 // This tells the simulator to use a different delay depending on whether
 // the gate's output is transitioning 0->1 (rise) or 1->0 (fall) -- real
 // gates are rarely symmetric this way. Re-simulate with the SAME
@@ -25,11 +25,11 @@ module FA_Gate(
   output cout
 );
   wire ps, pc1, pc2;
-  // rise delay = 3 and fall delay = 4
+
   xor #(3,4) (ps,  a,   b);
-  and #(3,4) (pc1, a,   b);
-  xor #(3,4) (sum, cin, ps);
-  and #(3,4) (pc2, cin, ps);
-  or  #(3,4) (cout, pc1, pc2);
+  and (pc1, a,   b);
+  xor (sum, cin, ps);
+  and (pc2, cin, ps);
+  or (cout, pc1, pc2);
 
 endmodule
