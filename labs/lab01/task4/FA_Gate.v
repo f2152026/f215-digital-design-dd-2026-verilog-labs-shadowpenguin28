@@ -27,7 +27,7 @@ module FA_Gate(
   output cout
 );
   wire ps, pc1, pc2;
-
+  // rise delay = 3 fall delay = 4
   xor #(3,4) (ps,  a,   b);
   and #(3,4) (pc1, a,   b);
   xor #(3,4) (sum, cin, ps);
